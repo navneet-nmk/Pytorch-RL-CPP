@@ -7,6 +7,7 @@
 #include "/Users/navneetmadhukumar/Downloads/Arcade-Learning-Environment-master/src/ale_interface.hpp"
 #include <math.h>
 #include <chrono>
+#include <torch/extension.h>
 
 
 Trainer::Trainer(int64_t input_channels, int64_t num_actions, int64_t capacity):
