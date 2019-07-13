@@ -15,7 +15,7 @@
         network(input_channels, num_actions),
         target_network(input_channels, num_actions),
         dqn_optimizer(
-            network.parameters(), torch::optim::AdamOptions(2e-4).beta1(0.5)){}
+            network.parameters(), torch::optim::AdamOptions(0.0001).beta1(0.5)){}
 
     torch::Tensor Trainer::compute_td_loss(int64_t batch_size, float gamma){
         std::vector<std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>> batch =
@@ -53,6 +53,8 @@
         torch::Tensor next_target_q_values = target_network.forward(new_states_tensor);
         torch::Tensor next_q_values = network.forward(new_states_tensor);
 
+        actions_tensor = actions_tensor.to(torch::kInt64);
+
         torch::Tensor q_value = q_values.gather(1, actions_tensor.unsqueeze(1)).squeeze(1);
         torch::Tensor maximum = std::get<1>(next_q_values.max(1));
         torch::Tensor next_q_value = next_target_q_values.gather(1, maximum.unsqueeze(1)).squeeze(1);
@@ -79,7 +81,14 @@
     }
 
     torch::Tensor Trainer::get_tensor_observation(std::vector<unsigned char> state) {
-        torch::Tensor state_tensor = torch::from_blob(std::data(state), {1, 3, 210, 160});
+        std::vector<int64_t > state_int;
+        state_int.reserve(state.size());
+
+        for (int i=0; i<state.size(); i++){
+            state_int.push_back(int64_t(state[i]));
+        }
+
+        torch::Tensor state_tensor = torch::from_blob(std::data(state_int), {1, 3, 210, 160});
         return state_tensor;
     }
 
@@ -109,11 +118,12 @@
         ale.reset_game();
         std::vector<unsigned char> state;
         ale.getScreenRGB(state);
+        ale.saveScreenPNG("game_screen.png");
         float episode_reward = 0.0;
         std::vector<float> all_rewards;
         std::vector<torch::Tensor> losses;
 
-        for(int i=0; i<num_epochs; i++){
+        for(int i=1; i<=num_epochs; i++){
             double epsilon = epsilon_by_frame(i);
             auto r = ((double) rand() / (RAND_MAX));
             torch::Tensor state_tensor = get_tensor_observation(state);
@@ -123,8 +133,9 @@
             }
             else{
                 torch::Tensor action_tensor = network.act(state_tensor);
-                int index = action_tensor[0].item<int>();
+                int64_t index = action_tensor[0].item<int64_t>();
                 a = legal_actions[index];
+
             }
 
             float reward = ale.act(a);
@@ -136,10 +147,10 @@
 
             torch::Tensor reward_tensor = torch::tensor(reward);
             torch::Tensor done_tensor = torch::tensor(done);
+            done_tensor = done_tensor.to(torch::kFloat32);
             torch::Tensor action_tensor_new = torch::tensor(a);
 
             buffer.push(state_tensor, new_state_tensor, action_tensor_new, done_tensor, reward_tensor);
-
             state = new_state;
 
             if (done){
@@ -150,12 +161,13 @@
                 episode_reward = 0.0;
             }
 
-            if (buffer.size_buffer() > batch_size){
+            if (buffer.size_buffer() > 10000){
                 torch::Tensor loss = compute_td_loss(batch_size, gamma);
                 losses.push_back(loss);
             }
 
-            if (i%100==0){
+            if (i%1000==0){
+                std::cout<<episode_reward<<std::endl;
                 loadstatedict(network, target_network);
             }
 

@@ -11,15 +11,15 @@ struct DQN : torch::nn::Module{
             :
             conv1(torch::nn::Conv2dOptions(input_channels, 32, 8)
                           .stride(4)
-                          .with_bias(false)),
+                          ),
             conv2(torch::nn::Conv2dOptions(32, 64, 4)
                           .stride(2)
-                          .with_bias(false)),
+                          ),
             conv3(torch::nn::Conv2dOptions(64, 64, 3)
                           .stride(1)
-                          .with_bias(false)),
+                          ),
 
-            linear1(torch::nn::Linear(32*7*7, 512)),
+            linear1(torch::nn::Linear(64*22*16, 512)),
             output(torch::nn::Linear(512, num_actions)){}
 
     torch::Tensor forward(torch::Tensor input) {

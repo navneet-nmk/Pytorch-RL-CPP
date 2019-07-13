@@ -6,7 +6,7 @@
 
 int main() {
 
-    Trainer trainer(3, 18, 10000);
-    trainer.train(123, "/Users/navneetmadhukumar/CLionProjects/Reinforcement_CPP/atari_roms/pong.bin", 1000);
+    Trainer trainer(3, 18, 100000);
+    trainer.train(123, "/Users/navneetmadhukumar/CLionProjects/Reinforcement_CPP/atari_roms/pong.bin", 1000000);
 
 }
