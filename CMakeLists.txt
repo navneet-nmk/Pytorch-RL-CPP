@@ -15,10 +15,11 @@ set(CPPRL_INCLUDE_DIRS
         )
 
 find_package(Torch REQUIRED)
+
 add_executable(Reinforcement_CPP main.cpp ExperienceReplay.cpp ExperienceReplay.h dqn.cpp Trainer.cpp dqn.h Trainer.h)
 
 
 include_directories(${CPPRL_INCLUDE_DIRS})
 
 find_library(LIBALE libale.so /Users/navneetmadhukumar/Downloads/Arcade-Learning-Environment-master/)
-target_link_libraries(Reinforcement_CPP ${LIBALE} ${TORCH_LIBRARIES})
+target_link_libraries(Reinforcement_CPP  ${LIBALE} ${TORCH_LIBRARIES} )

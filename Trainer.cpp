@@ -4,13 +4,12 @@
 #include "Trainer.h"
 #include "dqn.h"
 #include "ExperienceReplay.h"
-#include <torch/torch.h>
 #include "/Users/navneetmadhukumar/Downloads/Arcade-Learning-Environment-master/src/ale_interface.hpp"
 #include <math.h>
+#include <chrono>
 
 
-
-    Trainer::Trainer(int64_t input_channels, int64_t num_actions, int64_t capacity):
+Trainer::Trainer(int64_t input_channels, int64_t num_actions, int64_t capacity):
         buffer(capacity),
         network(input_channels, num_actions),
         target_network(input_channels, num_actions),
@@ -88,7 +87,7 @@
             state_int.push_back(int64_t(state[i]));
         }
 
-        torch::Tensor state_tensor = torch::from_blob(std::data(state_int), {1, 3, 210, 160});
+        torch::Tensor state_tensor = torch::from_blob(state_int.data(), {1, 3, 210, 160});
         return state_tensor;
     }
 
@@ -118,11 +117,10 @@
         ale.reset_game();
         std::vector<unsigned char> state;
         ale.getScreenRGB(state);
-        ale.saveScreenPNG("game_screen.png");
         float episode_reward = 0.0;
         std::vector<float> all_rewards;
         std::vector<torch::Tensor> losses;
-
+        auto start = std::chrono::high_resolution_clock::now();
         for(int i=1; i<=num_epochs; i++){
             double epsilon = epsilon_by_frame(i);
             auto r = ((double) rand() / (RAND_MAX));
@@ -161,7 +159,7 @@
                 episode_reward = 0.0;
             }
 
-            if (buffer.size_buffer() > 10000){
+            if (buffer.size_buffer() > 1000){
                 torch::Tensor loss = compute_td_loss(batch_size, gamma);
                 losses.push_back(loss);
             }
@@ -172,7 +170,13 @@
             }
 
         }
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        std::cout << "Time taken by function: "
+             << duration.count() << " microseconds" << std::endl;
 
 
     }
+
+
 

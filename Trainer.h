@@ -29,7 +29,6 @@ class Trainer{
         void load_enviroment(int64_t random_seed, std::string rom_path);
         double epsilon_by_frame(int64_t frame_id);
         torch::Tensor get_tensor_observation(std::vector<unsigned char> state);
-        void update_target_model();
         void loadstatedict(torch::nn::Module& model,
                            torch::nn::Module& target_model);
         void train(int64_t random_seed, std::string rom_path, int64_t num_epochs);
