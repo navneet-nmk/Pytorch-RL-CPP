@@ -2,10 +2,8 @@
 // Created by Navneet Madhu Kumar on 2019-07-10.
 //
 
-#ifndef REINFORCEMENT_CPP_DQN_H
-#define REINFORCEMENT_CPP_DQN_H
+#pragma once
 
-#endif //REINFORCEMENT_CPP_DQN_H
 #include <torch/torch.h>
 
 struct DQN : torch::nn::Module{

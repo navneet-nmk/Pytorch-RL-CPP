@@ -1,33 +1,23 @@
 //
 // Created by Navneet Madhu Kumar on 2019-07-10.
 //
-
-#include "ExperienceReplay.h"
+#include "Trainer.h"
 #include "dqn.h"
+#include "ExperienceReplay.h"
 #include <torch/torch.h>
 #include "/Users/navneetmadhukumar/Downloads/Arcade-Learning-Environment-master/src/ale_interface.hpp"
 #include <math.h>
 
-class Trainer{
 
-    private: ExperienceReplay buffer;
-    private: DQN network, target_network;
-    private: torch::optim::Adam dqn_optimizer;
-    private: ALEInterface ale;
-    private: double epsilon_start = 1.0;
-    private: double epsilon_final = 0.01;
-    private: int64_t epsilon_decay = 500;
-    private: int64_t batch_size = 32;
-    private: float gamma = 0.99;
 
-    Trainer(int64_t input_channels, int64_t num_actions, int64_t capacity):
+    Trainer::Trainer(int64_t input_channels, int64_t num_actions, int64_t capacity):
         buffer(capacity),
         network(input_channels, num_actions),
         target_network(input_channels, num_actions),
         dqn_optimizer(
             network.parameters(), torch::optim::AdamOptions(2e-4).beta1(0.5)){}
 
-    torch::Tensor compute_td_loss(int64_t batch_size, float gamma){
+    torch::Tensor Trainer::compute_td_loss(int64_t batch_size, float gamma){
         std::vector<std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>> batch =
                 buffer.sample_queue(batch_size);
 
@@ -77,28 +67,43 @@ class Trainer{
 
     }
 
-    void load_enviroment(int64_t random_seed, std::string rom_path){
+    void Trainer::load_enviroment(int64_t random_seed, std::string rom_path){
         ale.setInt("random_seed", random_seed);
         ale.setBool("display_screen", true);
         ale.loadROM(rom_path);
 
     }
 
-    double epsilon_by_frame(int64_t frame_id){
+    double Trainer::epsilon_by_frame(int64_t frame_id){
         return epsilon_final + (epsilon_start - epsilon_final) * exp(-1. * frame_id / epsilon_decay);
     }
 
-    torch::Tensor get_tensor_observation(std::vector<unsigned char> state){
-        torch::Tensor state_tensor = torch::from_blob(std::data(state), {3, 210, 160});
+    torch::Tensor Trainer::get_tensor_observation(std::vector<unsigned char> state) {
+        torch::Tensor state_tensor = torch::from_blob(std::data(state), {1, 3, 210, 160});
         return state_tensor;
     }
 
-    void update_target_model(){
-        torch::save(network, "network-checkpoint.pt");
-        torch::load(target_network, "network-checkpoint.pt");
+    void Trainer::loadstatedict(torch::nn::Module& model,
+                       torch::nn::Module& target_model) {
+        torch::autograd::GradMode::set_enabled(false);  // make parameters copying possible
+        auto new_params = target_model.named_parameters(); // implement this
+        auto params = model.named_parameters(true /*recurse*/);
+        auto buffers = model.named_buffers(true /*recurse*/);
+        for (auto& val : new_params) {
+            auto name = val.key();
+            auto* t = params.find(name);
+            if (t != nullptr) {
+                t->copy_(val.value());
+            } else {
+                t = buffers.find(name);
+                if (t != nullptr) {
+                    t->copy_(val.value());
+                }
+            }
+        }
     }
 
-    void train(int64_t random_seed, std::string rom_path, int64_t num_epochs){
+    void Trainer::train(int64_t random_seed, std::string rom_path, int64_t num_epochs){
         load_enviroment(random_seed, rom_path);
         ActionVect legal_actions = ale.getLegalActionSet();
         ale.reset_game();
@@ -151,14 +156,11 @@ class Trainer{
             }
 
             if (i%100==0){
-                update_target_model();
+                loadstatedict(network, target_network);
             }
 
         }
 
 
     }
-
-
-};
 

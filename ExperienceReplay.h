@@ -1,26 +1,20 @@
 //
 // Created by Navneet Madhu Kumar on 2019-07-08.
 //
+#pragma once
 
-#ifndef REINFORCEMENT_CPP_STORAGE_H
-#define REINFORCEMENT_CPP_STORAGE_H
-
-#endif //REINFORCEMENT_CPP_STORAGE_H
-
-
+#include <torch/torch.h>
 #include <memory>
 #include <vector>
 #include <iostream>
 
-#include <c10/util/ArrayRef.h>
-#include <torch/torch.h>
+
 #include <algorithm>
 #include <iterator>
 #include <random>
 
 class ExperienceReplay{
 
-    private:torch::Tensor state, new_state, action, done, reward;
     private: int64_t capacity;
     public: std::deque<std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>> buffer;
 
