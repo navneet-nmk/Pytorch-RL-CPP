@@ -73,7 +73,14 @@ The CMake file requires some changes for things to run smoothly.
 2. Set torch dir, after building libtorch.
 Refer to the current CMakeLists.txt and make the relevant changes.
 
+# Future Plans
+Plans to support:
+1. Runtime differences between C++ and Python.
+2. Python bindings for the Trainer module.
+3. More models and methods.
+4. Support for mujoco environment.
 
+Stay tuned !
 
 
 
