@@ -1,5 +1,6 @@
 # Pytorch-RL-CPP
 <img width="160px" height="22px" href="https://github.com/pytorch/pytorch" src="https://pp.userapi.com/c847120/v847120960/82b4/xGBK9pXAkw8.jpg"> 
+
 A Repository with C++ implementations of Reinforcement Learning Algorithms (Pytorch)
  
 
@@ -17,7 +18,7 @@ The Environment used is the C++ Port of [Arcade Learning Environment](https://gi
 * Plans to support more models and more sophisticated methods in the future.
 
 # Results for Pong using Double DQN
-<img src="/assets/dqn_pong_results.png" width="200">
+<img src="/assets/dqn_pong_results.png" width="600">
 
 
 # Installing the dependencies
