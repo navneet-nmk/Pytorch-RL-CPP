@@ -7,7 +7,6 @@
 #include "/Users/navneetmadhukumar/Downloads/Arcade-Learning-Environment-master/src/ale_interface.hpp"
 #include <math.h>
 #include <chrono>
-#include <torch/extension.h>
 
 
 Trainer::Trainer(int64_t input_channels, int64_t num_actions, int64_t capacity):
@@ -160,7 +159,7 @@ Trainer::Trainer(int64_t input_channels, int64_t num_actions, int64_t capacity):
                 episode_reward = 0.0;
             }
 
-            if (buffer.size_buffer() > 1000){
+            if (buffer.size_buffer() >= 10000){
                 torch::Tensor loss = compute_td_loss(batch_size, gamma);
                 losses.push_back(loss);
             }

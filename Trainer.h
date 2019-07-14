@@ -19,7 +19,7 @@ class Trainer{
     private: ALEInterface ale;
     private: double epsilon_start = 1.0;
     private: double epsilon_final = 0.01;
-    private: int64_t epsilon_decay = 500;
+    private: int64_t epsilon_decay = 30000;
     private: int64_t batch_size = 32;
     private: float gamma = 0.99;
 
