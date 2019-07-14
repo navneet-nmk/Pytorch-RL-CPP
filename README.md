@@ -3,7 +3,7 @@
 A Repository with C++ implementations of Reinforcement Learning Algorithms (Pytorch)
  
 
-<img src="/assets/r_her.gif?raw=true" width="200">
+<img src="/assets/pong_dqn.gif?raw=true" width="200">
 
 **RlCpp is a reinforcement learning framework, written using the [PyTorch C++ frontend](https://pytorch.org/cppdocs/frontend.html).**
 
@@ -17,7 +17,7 @@ The Environment used is the C++ Port of [Arcade Learning Environment](https://gi
 * Plans to support more models and more sophisticated methods in the future.
 
 # Results for Pong using Double DQN
-<img src="/assets/r_her.gif?raw=true" width="200">
+<img src="/assets/dqn_pong_results.png" width="200">
 
 
 # Installing the dependencies
