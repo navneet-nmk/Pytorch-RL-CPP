@@ -1,6 +1,7 @@
 # Pytorch-RL-CPP
+<img width="160px" height="22px" href="https://github.com/pytorch/pytorch" src="https://pp.userapi.com/c847120/v847120960/82b4/xGBK9pXAkw8.jpg"> 
 A Repository with C++ implementations of Reinforcement Learning Algorithms (Pytorch)
-<img width="160px" height="22px" href="https://github.com/pytorch/pytorch" src="https://pp.userapi.com/c847120/v847120960/82b4/xGBK9pXAkw8.jpg">  
+ 
 
 <img src="/assets/r_her.gif?raw=true" width="200">
 
