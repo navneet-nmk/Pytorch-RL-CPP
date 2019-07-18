@@ -31,6 +31,15 @@ The deep reinforcement learning community has made several independent improveme
 <img src="/assets/dqn_pong_results.png" width="600">
 
 
+# Environments (All Atari Environments)
+1. Breakout 
+2. Pong
+3. Montezuma's Revenge (Current Research)
+4. Pitfall
+5. Gravitar
+6. CarRacing
+
+
 # Installing the dependencies
 
 # Arcade Learning Environment
