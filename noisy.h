@@ -18,7 +18,7 @@ struct NoisyLinear : torch::nn::Module{
         b_epsilon  = register_buffer("b_epsilon", torch::randn(out_features));
 
         reset_params(std_init);
-        reset_noise();
+        reset_noise(in_features, out_features);
 
     }
 
@@ -54,7 +54,7 @@ struct NoisyLinear : torch::nn::Module{
         b_epsilon.copy_(scale_noise(out_features));
 
     }
-    
+
     torch::Tensor scale_noise(int64_t size){
         torch::Tensor x = torch::randn(size);
         x = x.sign().mul(x.abs().sqrt());

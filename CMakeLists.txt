@@ -17,7 +17,7 @@ set(CPPRL_INCLUDE_DIRS
 
 find_package(Torch REQUIRED)
 
-add_executable(Reinforcement_CPP main.cpp ExperienceReplay.cpp ExperienceReplay.h dqn.cpp Trainer.cpp dqn.h Trainer.h PrioritizedExperienceReplay.cpp PrioritizedExperienceReplay.h noisy.h)
+add_executable(Reinforcement_CPP main.cpp ExperienceReplay.cpp ExperienceReplay.h dqn.cpp Trainer.cpp dqn.h Trainer.h PrioritizedExperienceReplay.cpp PrioritizedExperienceReplay.h noisy.h categorical_dqn.h)
 
 
 include_directories(${CPPRL_INCLUDE_DIRS})
