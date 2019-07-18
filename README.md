@@ -14,8 +14,18 @@ user's computers with minimal setup required on the user's side.
 The Environment used is the C++ Port of [Arcade Learning Environment](https://github.com/mgbellemare/Arcade-Learning-Environment) 
 
 # Currently Supported Models
-1. Double DQN
-* Plans to support more models and more sophisticated methods in the future.
+The deep reinforcement learning community has made several independent improvements to the DQN algorithm. This repository presents latest extensions to the DQN algorithm: 
+
+  1. Playing Atari with Deep Reinforcement Learning [[arxiv]](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf)
+  2. Deep Reinforcement Learning with Double Q-learning [[arxiv]](https://arxiv.org/abs/1509.06461) 
+  3. Dueling Network Architectures for Deep Reinforcement Learning [[arxiv]](https://arxiv.org/abs/1511.06581) 
+  4. Prioritized Experience Replay [[arxiv]](https://arxiv.org/abs/1511.05952) 
+  5. Noisy Networks for Exploration [[arxiv]](https://arxiv.org/abs/1706.10295) 
+  6. A Distributional Perspective on Reinforcement Learning [[arxiv]](https://arxiv.org/pdf/1707.06887.pdf) 
+  7. Rainbow: Combining Improvements in Deep Reinforcement Learning [[arxiv]](https://arxiv.org/abs/1710.02298)
+  8. Distributional Reinforcement Learning with Quantile Regression [[arxiv]](https://arxiv.org/pdf/1710.10044.pdf) 
+  9. Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation  [[arxiv]](https://arxiv.org/abs/1604.06057)
+  10. Neural Episodic Control [[arxiv]](https://arxiv.org/pdf/1703.01988.pdf) 
 
 # Results for Pong using Double DQN
 <img src="/assets/dqn_pong_results.png" width="600">
