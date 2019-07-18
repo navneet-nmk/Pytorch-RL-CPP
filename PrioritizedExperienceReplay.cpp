@@ -21,23 +21,25 @@
 #include <random>
 
 
-PrioritizedExperienceReplay::PrioritizedExperienceReplay(int64_t size, float_t prob_alpha) {
-
+PrioritizedExperienceReplay::PrioritizedExperienceReplay(int64_t size) {
     capacity = size;
 }
 
 void PrioritizedExperienceReplay::push(torch::Tensor state,torch::Tensor new_state,torch::
-Tensor action,torch::Tensor done,torch::Tensor reward){
-
+Tensor action,torch::Tensor done,torch::Tensor reward, float_t td_error, int64_t ind){
+    float_t error(td_error);
+    int64_t index(ind);
     std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor> sample (state, new_state, action, reward, done);
+    element sample_struct(error, index, sample);
+
     if (buffer.size() < capacity){
-        buffer.push_back(sample);
+        buffer.push(sample_struct);
     }
     else {
         while (buffer.size() >= capacity) {
-            buffer.pop_front();
+            buffer.pop();
         }
-        buffer.push_back(sample);
+        buffer.push(sample_struct);
     }
 }
 
@@ -45,6 +47,12 @@ std::vector<std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tenso
 PrioritizedExperienceReplay::sample_queue(
         int64_t batch_size){
     std::vector<std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>> b(batch_size);
+    while (batch_size > 0 and buffer.size() > 0){
+        element s = buffer.top();
+        buffer.pop();
+        std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor> sample = s.transition;
+        b.push_back(sample);
+    }
     return b;
 }
 

@@ -12,8 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a064fe2f-2d7f-4bc9-83de-9023db22b70d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrioritizedExperienceReplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/PrioritizedExperienceReplay.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrioritizedExperienceReplay.h" beforeDir="false" afterPath="$PROJECT_DIR$/PrioritizedExperienceReplay.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PrioritizedExperienceReplay.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
+            <state relative-caret-position="249">
+              <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
               <folding>
                 <element signature="e#113#153#0" expanded="true" />
               </folding>
@@ -79,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PrioritizedExperienceReplay.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+            <state relative-caret-position="144">
+              <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
               <folding>
                 <element signature="e#240#264#0" expanded="true" />
               </folding>
@@ -150,8 +150,8 @@
         <option value="$PROJECT_DIR$/Trainer.h" />
         <option value="$PROJECT_DIR$/Trainer.cpp" />
         <option value="$PROJECT_DIR$/.gitattributes" />
-        <option value="$PROJECT_DIR$/PrioritizedExperienceReplay.cpp" />
         <option value="$PROJECT_DIR$/PrioritizedExperienceReplay.h" />
+        <option value="$PROJECT_DIR$/PrioritizedExperienceReplay.cpp" />
       </list>
     </option>
   </component>
@@ -257,12 +257,12 @@
       <workItem from="1562270591601" duration="86000" />
       <workItem from="1562270697505" duration="6557000" />
       <workItem from="1562280792406" duration="35521000" />
-      <workItem from="1563034046610" duration="12281000" />
+      <workItem from="1563034046610" duration="13206000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54445000" />
+    <option name="totallyTimeSpent" value="55370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -277,7 +277,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -293,7 +293,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32891566" />
       <window_info anchor="bottom" id="Tail" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.90772533" weight="0.09518072" />
+      <window_info active="true" anchor="bottom" id="Messages" order="13" sideWeight="0.90772533" visible="true" weight="0.43975905" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -575,22 +575,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PrioritizedExperienceReplay.cpp">
+    <entry file="file://$PROJECT_DIR$/PrioritizedExperienceReplay.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
+        <state relative-caret-position="144">
+          <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
           <folding>
-            <element signature="e#113#153#0" expanded="true" />
+            <element signature="e#240#264#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PrioritizedExperienceReplay.h">
+    <entry file="file://$PROJECT_DIR$/PrioritizedExperienceReplay.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+        <state relative-caret-position="249">
+          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
           <folding>
-            <element signature="e#240#264#0" expanded="true" />
+            <element signature="e#113#153#0" expanded="true" />
           </folding>
         </state>
       </provider>

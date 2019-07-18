@@ -14,7 +14,6 @@
 #include <algorithm>
 #include <iterator>
 #include <random>
-#include <altivec.h>
 
 struct element{
     float_t td_error;
@@ -40,14 +39,13 @@ struct element{
 class PrioritizedExperienceReplay{
 
 private: int64_t capacity;
-private: float_t alpha;
 
 public: std::priority_queue<element> buffer;
 
 public:
-    PrioritizedExperienceReplay (int64_t capacity, float_t prob_alpha);
+    PrioritizedExperienceReplay (int64_t capacity);
     void push(torch::Tensor state,torch::Tensor new_state,torch::
-    Tensor action,torch::Tensor done,torch::Tensor reward);
+    Tensor action,torch::Tensor done,torch::Tensor reward, float_t td_error, int64_t index);
     int64_t size_buffer();
     std::vector<std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>> sample_queue(int64_t batch_size);
 
